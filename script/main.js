@@ -1,11 +1,16 @@
 "use strict";
 
 import { radioPlayerInit } from "./radioPlayer.js";
+import { videoPlayerInit } from "./videoPlayer.js";
+import { musicPlayerInit } from "./musicPlayer.js";
+
+console.log(videoPlayerInit());
 
 // получаем элементы со страницы ==============================================
 const playerBtn = document.querySelectorAll(".player-btn"),
   playerBlock = document.querySelectorAll(".player-block"),
   temp = document.querySelector(".temp");
+
 
 // Определяем функции =========================================================
 const deactivationPlayer = () => {
