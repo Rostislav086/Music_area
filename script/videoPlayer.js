@@ -6,7 +6,9 @@ export const videoPlayerInit = () => {
     videoButtonStop = document.querySelector(".video-button__stop"),
     videoProgress = document.querySelector(".video-progress"),
     videoTimeTotal = document.querySelector(".video-time__total"),
-    videoVimePassed = document.querySelector(".video-time__passed");
+    videoVimePassed = document.querySelector(".video-time__passed"),
+    videoVolume = document.querySelector(".video-volume"),
+    videoIconMute = document.querySelector(".video-icon__mute");
 
   // Создаем функции ========================================================
 
@@ -63,7 +65,23 @@ export const videoPlayerInit = () => {
     videoPlayer.curentTime = (value * duration) / 100;
   };
 
+  const changeVolume = () => {
+    videoPlayer.volume = videoVolume.value / 100;
+  };
+
+  const muteVolume = () => {
+    if (
+      videoPlayer.volume === videoVolume.value / 100 ||
+      videoPlayer.volume === 1
+    ) {
+      videoPlayer.volume = 0;
+    } else if (videoPlayer.volume === 0) {
+      videoPlayer.volume = videoVolume.value / 100;
+    }
+  };
+
   // Навешиваем обработчики ===================================================
+
   videoPlayer.addEventListener("click", playVideo);
 
   videoButtonPlay.addEventListener("click", playVideo);
@@ -74,4 +92,6 @@ export const videoPlayerInit = () => {
   videoPlayer.addEventListener("timeupdate", timeUpdate);
 
   videoProgress.addEventListener("change", changeTime);
+  videoVolume.addEventListener("input", changeVolume);
+  videoIconMute.addEventListener("click", muteVolume);
 };
